@@ -1,0 +1,22 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+.env
+*.log
+
+runs/*
+!runs/.gitkeep
+
+# Не добавлять архивы датасета и извлечённые образцы
+*.zip
+*.whl
+*.tgz
+*.tar.gz
+
+# Содержат фрагменты кода малвари и её адреса: только локально
+archive/
+analysis/*.xlsx
+analysis/file_labels.csv
+analysis/eda_results/
+~$*
