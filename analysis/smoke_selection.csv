@@ -1,0 +1,4 @@
+folder_name,ecosystem,label_true
+catme-1.0.tar.gz,py,malicious
+gitdb-4.0.11-py3-none-any.whl,py,benign
+url-template-3.1.1.tgz,js,benign
