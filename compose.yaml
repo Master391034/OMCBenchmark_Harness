@@ -1,0 +1,74 @@
+services:
+  llm-relay:
+    build:
+      context: .
+      dockerfile: docker/relay.Dockerfile
+    image: omcb-llm-relay:local
+    restart: "no"
+    user: "10002:10002"
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=16m,mode=1777,uid=10002,gid=10002
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    init: true
+    networks:
+      isolated:
+        aliases:
+          - llm-relay
+      relay_egress: {}
+
+  harness:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: omcb-harness:local
+    profiles: ["run"]
+    restart: "no"
+    user: "10001:10001"
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=64m,mode=1777,uid=10001,gid=10001
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    init: true
+    mem_limit: 2g
+    cpus: 2.0
+    pids_limit: 128
+    ulimits:
+      nofile:
+        soft: 256
+        hard: 256
+    volumes:
+      - "${OMCB_PATH:?Set OMCB_PATH to the local OMCBench directory}:/data/benchmark:ro"
+      - "./lists:/data/lists:ro"
+      - "./runs:/data/runs:rw"
+    networks:
+      - isolated
+    command:
+      - /data/benchmark
+      - --endpoint
+      - http://llm-relay:1234/v1
+      - --model
+      - minicpm5-1b:3
+      - --packages-file
+      - /data/lists/smoke.txt
+      - --output
+      - /data/runs/smoke
+      - --max-turns
+      - "10"
+      - --max-tokens
+      - "4096"
+      - --timeout
+      - "300"
+
+networks:
+  isolated:
+    name: omcb-internal
+    external: true
+  relay_egress:
+    name: omcb-relay-egress
