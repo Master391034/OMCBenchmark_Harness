@@ -1,0 +1,35 @@
+{
+  "seed": 20261103,
+  "source_run": "dev150_baseline_001",
+  "selection": "seeded random sample within ecosystem x label strata among completed baseline triages",
+  "dev74_quota": {
+    "pypi_benign": 19,
+    "pypi_malicious": 18,
+    "npm_benign": 18,
+    "npm_malicious": 19
+  },
+  "dev74_counts": {
+    "npm_benign": 18,
+    "npm_malicious": 19,
+    "pypi_benign": 19,
+    "pypi_malicious": 18
+  },
+  "failure27_counts": {
+    "token_limit_npm_benign": 4,
+    "token_limit_npm_malicious": 3,
+    "token_limit_pypi_benign": 6,
+    "token_limit_pypi_malicious": 5,
+    "api_error_npm_benign": 3,
+    "api_error_npm_malicious": 1,
+    "api_error_pypi_benign": 4,
+    "api_error_pypi_malicious": 1
+  },
+  "failure27_policy": "include every non-completed baseline case; no resampling",
+  "sizes": {
+    "dev74": 74,
+    "failure27": 27,
+    "unique_total": 101
+  },
+  "holdout_used": false,
+  "notes": "Failure subset includes token_limit and api_error; baseline API trace identifies all 9 api_error cases as context overflow. The original baseline status remains unchanged in manifest."
+}

@@ -1,0 +1,37 @@
+{
+  "created_utc": "2026-11-03T17:59:35.719374+00:00",
+  "seed": 20261103,
+  "manifest_path": "omcb/results/manifest.csv",
+  "manifest_sha256": "c3b65ae73dbe78f5a9dbf18a77fb604c431848e4ed093f4c4b078eb6765fb84c",
+  "smoke_list_path": "project/project/lists/smoke.txt",
+  "smoke_list_sha256": "c1afa379b7bc9d7861088aa38af872b155900e6019380bdeeb6c3117ae344073",
+  "smoke_excluded": 3,
+  "smoke_archives": [
+    "catme-1.0.tar.gz",
+    "gitdb-4.0.11-py3-none-any.whl",
+    "url-template-3.1.1.tgz"
+  ],
+  "remaining_after_smoke": 797,
+  "development_size": 150,
+  "holdout_size": 647,
+  "development_strata": {
+    "py_benign": 38,
+    "py_malicious": 37,
+    "js_benign": 37,
+    "js_malicious": 38
+  },
+  "holdout_strata": {
+    "py_benign": 161,
+    "py_malicious": 162,
+    "js_benign": 162,
+    "js_malicious": 162
+  },
+  "quota": {
+    "py_benign": 38,
+    "py_malicious": 37,
+    "js_benign": 37,
+    "js_malicious": 38
+  },
+  "selection_method": "independent seeded random sample within each ecosystem x label stratum",
+  "archive_contents_opened": false
+}
